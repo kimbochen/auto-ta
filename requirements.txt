@@ -1,7 +1,9 @@
 llama-index
 langchain
-langchain-community
 sentence-transformers
+llama-index-embeddings-huggingface
+llama-index-llms-huggingface
 accelerate
 matplotlib
 gradio
+sentencepiece

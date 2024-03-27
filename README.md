@@ -7,7 +7,7 @@
 We need 2 servers:
 
 | Server | Public | Default Port | Runs on |
-| :- | :- |
+| :- | :- | :-: | :-: |
 | Jupyter Lab | Yes | 8889 | CPU server |
 | Proxy | Yes | 8888 | CPU server |
 | Backend | No | 8000 | GPU server |

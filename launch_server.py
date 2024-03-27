@@ -26,20 +26,17 @@ def main():
     theme = gr.themes.Default(spacing_size='lg', text_size='lg')
 
     with gr.Blocks(theme=theme) as qabot:
-        # gr.Markdown('# Auto TA')
         qbox = gr.Textbox(label='Enter your question')
         abox = gr.Textbox(label='Answer', interactive=False, autoscroll=False, max_lines=12)
 
         with gr.Row():
             submit_btn = gr.Button('Submit', size='sm')
             clear_btn = gr.ClearButton(components=[qbox, abox], size='sm')
-            flag_btn = gr.Button('Good Response', size='sm')
+            flag_btn = gr.Button('Good Response', size='sm', interactive=False)
 
         gr.on(
-            triggers=[qbox.submit, submit_btn.click],
-            fn=query_engine.query,
-            inputs=qbox,
-            outputs=abox
+            triggers=[qbox.submit, submit_btn.click], fn=query_engine.query,
+            inputs=qbox, outputs=abox
         )
         qbox.change(lambda: gr.update(interactive=True), outputs=flag_btn)
         abox.change(log_qa, inputs=[qbox, abox])

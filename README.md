@@ -2,11 +2,19 @@
 
 ## Installation
 
+### Prerequisites
+
+We need 2 servers:
+
 | Server | Public | Default Port | Runs on |
 | :- | :- |
 | Jupyter Lab | Yes | 8889 | CPU server |
 | Proxy | Yes | 8888 | CPU server |
 | Backend | No | 8000 | GPU server |
+
+Software: [Miniconda](https://docs.anaconda.com/free/miniconda/index.html#quick-command-line-install)
+
+Alternatively, you can use other Python virtual environment tools and install NodeJS separately.
 
 
 ### Backend
@@ -21,7 +29,8 @@ The backend server runs on a GPU server.
    # Install the packages
    pip install -r requirements.txt
    ```
-2. Under the repo directory, put documents in `corpus/`.
+2. Under the repo directory, unzip `corpus.zip` and name the folder `corpus`.
+  - [Corpus link](https://drive.google.com/file/d/19AmN427dTgKQc1KRUUZUfvPwjZKECSRn)
 3. Configuring addresses: `source config_addrs.sh`
 
 

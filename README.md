@@ -7,7 +7,7 @@
 We need 2 servers:
 
 | Server | Public | Default Port | Runs on |
-| :- | :- | :-: | :-: |
+| :- | :-: | :-: | :-: |
 | Jupyter Lab | Yes | 8889 | CPU server |
 | Proxy | Yes | 8888 | CPU server |
 | Backend | No | 8000 | GPU server |
@@ -58,7 +58,6 @@ The JupyterLab server exposes to the public and connects to the proxy server.
    cd extension-examples/
    conda env create
    conda activate jupyterlab-extension-examples
-   source ../config_addrs.sh
    ```
 3. Install Node modules
    ```bash

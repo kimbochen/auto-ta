@@ -29,21 +29,18 @@ The backend server runs on a GPU server.
    # Install the packages
    pip install -r requirements.txt
    ```
-2. Under the repo directory, unzip `corpus.zip` and name the folder `corpus`.
-  - [Corpus link](https://drive.google.com/file/d/19AmN427dTgKQc1KRUUZUfvPwjZKECSRn)
-3. Configuring addresses: `source config_addrs.sh`
+2. Under the repo directory, unzip `corpus.zip` and name the folder `corpus`. [Corpus link](https://drive.google.com/file/d/19AmN427dTgKQc1KRUUZUfvPwjZKECSRn)
 
 
 ### Proxy
 
 The proxy server runs on a server that connects to the backend server.
 
-1. In `proxy/`, create a NodeJS virtual environment
+Under directory `proxy/`
   ```bash
-  conda env create
+  conda env create  # Create a NodeJS virtual environment
+  npm install       # Install the packages
   ```
-2. Install packages: `npm install`
-3. Configuring addresses: `source config_addrs.sh`
 
 
 ### Jupyter Lab
@@ -79,18 +76,24 @@ The JupyterLab server exposes to the public and connects to the proxy server.
 
 ## Launch
 
-```bash
-# On the GPU server
-python launch_backend.py
+On the GPU server:
 
-# On the CPU server
+```bash
+source config_addrs.sh
+python launch_backend.py
+```
+
+On the CPU server:
+
+```bash
 # Proxy
 conda activate proxy
+source config_addrs.sh
 cd proxy/
 npm start
 
-# On the CPU server
 # JupyterLab
 conda activate jupyterlab-extension-examples
+source config_addrs.sh
 jupyter lab --ip 0.0.0.0 --port ${JPL_PORT}
 ```

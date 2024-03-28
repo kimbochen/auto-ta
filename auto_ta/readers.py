@@ -16,6 +16,17 @@ class SummarizerReader:
         return summary[0]['summary_text']
 
 
+class DummyReader:
+    def __init(self):
+        pass
+
+    def answer(self, *args, **kwargs):
+        return 'Dummy answer.'
+
+    def __str__(self):
+        return 'DummyReader'
+
+
 class LLMReader:
     def __init__(self, llm_name, prompt_tmpl, **kwargs):
         self.llm_name = llm_name

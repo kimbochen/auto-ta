@@ -33,4 +33,4 @@ class DefaultRetriever(BaseRetriever):
         return idx
 
     def __str__(self):
-        return 'DefaultRetriever(ensemble=[BAAI/bge-base-en-v1.5, thenlper/gte-base])'
+        return 'DefaultRetriever(ensemble=[BAAI/bge-small-en-v1.5, thenlper/gte-small])'

@@ -1,4 +1,6 @@
 from auto_ta.query_engines import (
     SummaryQueryEngine,
-    LLMQueryEngine
+    StableLM2QueryEngine,
+    Gemma2BQueryEngine,
+    StableLM3BQueryEngine
 )

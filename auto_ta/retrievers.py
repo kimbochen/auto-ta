@@ -3,14 +3,15 @@ from llama_index.core.retrievers import BaseRetriever
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 
-class DefaultRetriever(BaseRetriever):
-    def __init__(self, corpus, top_k):
+class EnsembleRetriever(BaseRetriever):
+    def __init__(self, model_size, corpus, top_k):
         super().__init__()
+        self.model_size = model_size
 
-        baai_idx = DefaultRetriever.init_index('BAAI/bge-small-en-v1.5', corpus)
+        baai_idx = EnsembleRetriever.init_index(f'BAAI/bge-{model_size}-en-v1.5', corpus)
         self.baai_rtvr = baai_idx.as_retriever(similarity_top_k=top_k)
 
-        gte_idx = DefaultRetriever.init_index('thenlper/gte-small', corpus)
+        gte_idx = EnsembleRetriever.init_index(f'thenlper/gte-{model_size}', corpus)
         self.gte_rtvr = gte_idx.as_retriever(similarity_top_k=top_k)
 
     def _retrieve(self, query_bundle):
@@ -33,4 +34,4 @@ class DefaultRetriever(BaseRetriever):
         return idx
 
     def __str__(self):
-        return 'DefaultRetriever(ensemble=[BAAI/bge-small-en-v1.5, thenlper/gte-small])'
+        return f'EnsembleRetriever(ensemble=[BAAI/bge-{self.model_size}-en-v1.5, thenlper/gte-{self.model_size}])'

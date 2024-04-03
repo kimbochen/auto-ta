@@ -1,8 +1,8 @@
 from llama_index.core import SimpleDirectoryReader
 from transformers import logging
 
-from auto_ta.retrievers import *
 from auto_ta.readers import *
+from auto_ta.retrievers import *
 
 logging.set_verbosity_error()
 
@@ -30,25 +30,40 @@ class QueryEngine:
 
         return response
 
+    def __str__ (self):
+        f'{type(self).__name__}(\n\tretriever={self.retriever},\n\treader={self.reader}\n)'
+
 
 class SummaryQueryEngine(QueryEngine):
     def __init__(self, corpus_path, top_k=5):
         corpus = SimpleDirectoryReader(corpus_path, recursive=True).load_data()
-        retriever = DefaultRetriever(corpus, top_k)
+        retriever = EnsembleRetriever('base', corpus, top_k)
         reader = SummarizerReader()
         super().__init__(retriever, reader)
 
-    def __str__(self):
-        return f'SummaryQueryEngine(\n\tretriever={self.retriever},\n\treader={self.reader}\n)'
 
-
-
-class LLMQueryEngine(QueryEngine):
+class StableLM2QueryEngine(QueryEngine):
     def __init__(self, corpus_path, top_k=5):
         corpus = SimpleDirectoryReader(corpus_path, recursive=True).load_data()
-        retriever = DefaultRetriever(corpus, top_k)
-        reader = StableLM2Reader()  # DefaultLLMReader()
+        retriever = EnsembleRetriever('base', corpus, top_k)
+        reader = StableLM2Reader()
+        super().__init__(retriever, reader)
+
+
+class Gemma2BQueryEngine(QueryEngine):
+    def __init__(self, corpus_path, top_k=5):
+        corpus = SimpleDirectoryReader(corpus_path, recursive=True).load_data()
+        retriever = EnsembleRetriever('base', corpus, top_k)
+        reader = Gemma2BReader()
+        super().__init__(retriever, reader)
+
+
+class StableLM3BQueryEngine(QueryEngine):
+    def __init__(self, corpus_path, top_k=5):
+        corpus = SimpleDirectoryReader(corpus_path, recursive=True).load_data()
+        retriever = EnsembleRetriever('base', corpus, top_k)
+        reader = StableLM3BReader()
         super().__init__(retriever, reader)
 
     def __str__(self):
-        return f'LLMQueryEngine(\n\tretriever={self.retriever},\n\treader={self.reader}\n)'
+        return f'StableLM3BQueryEngine(\n\tretriever={self.retriever},\n\treader={self.reader}\n)'

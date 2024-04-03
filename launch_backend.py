@@ -22,7 +22,7 @@ def log_good_ans(q_str, a_str):
 
 
 def main():
-    query_engine = auto_ta.LLMQueryEngine('corpus/')
+    query_engine = auto_ta.Gemma2BQueryEngine('corpus/')
     theme = gr.themes.Default(spacing_size='lg', text_size='lg')
 
     with gr.Blocks(theme=theme) as qabot:
